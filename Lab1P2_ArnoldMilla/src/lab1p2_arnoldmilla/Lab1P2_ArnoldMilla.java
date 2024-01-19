@@ -41,14 +41,32 @@ static Scanner sc = new Scanner(System.in);
                     int mesA = fechaA.getMonth();
                     int dia = fechaD.getDate();
                     int diaA = fechaA.getDate();
-                    if ((año > añoA-13) && (mes >= mesA) && (dia > diaA)){
+                    
+                    int wah = año + mes + dia;
+                    int weh = añoA + mesA+ diaA;
+                    
+                    if (weh > wah){
                         System.out.println("Usted es menor de edad");
                         break;
-                    }                    
-                    else {
+                    }
+                    else{
                         usuario += fecha;
                         usuario += ";";
                     }
+                    
+//                    if (año > añoA){
+//                        if (mes >= mesA){
+//                            if (dia > diaA - 13){
+//                                System.out.println("Usted es menor de edad");
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    else {
+//                        usuario += fecha;
+//                        usuario += ";";
+//                    }
+//descomentalo talvez funciona si no funciono la otra
                     System.out.println("Ingrese su correo electronico");
                     usuario += sc.next();
                     usuario += ";";
