@@ -1,6 +1,7 @@
 package lab1p2_arnoldmilla;
-import java.time.temporal.TemporalAdjusters;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Lab1P2_ArnoldMilla {
 static Scanner sc = new Scanner(System.in);
@@ -13,8 +14,14 @@ static Scanner sc = new Scanner(System.in);
         System.out.println("3. Listar por dominio");
         System.out.println("4. Salir");
         int opc = sc.nextInt();
+        String regexG = "^[a-zA-Z0-9._%&$+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        String regexC = "";
+        Pattern pt= Pattern.compile(regexG);
+        Pattern dominioGmail= Pattern.compile("@gmail.com");
+        //Matcher listar= dominioGmail.matcher();
+                        
         ArrayList <String> registro = new ArrayList<>();
-        while (opc <= 4){
+        while (opc < 4){
             switch (opc){
                 case 1:{  
                     String usuario = "";
@@ -24,11 +31,17 @@ static Scanner sc = new Scanner(System.in);
                     System.out.println("Ingrese su apellido");
                     usuario += sc.next();
                     usuario += ";";
-                    System.out.println("Ingrese su fecha de nacimiento formato dd/MM/yyyy");
+                    System.out.println("Ingrese su fecha de nacimiento formato yyyy/MM/dd");
                     String fecha = sc.next();
                     Date fechaD = new Date(fecha);
+                    Date fechaA = new Date();
                     int año = fechaD.getYear();
-                    if (año > 111){
+                    int añoA = fechaA.getYear();
+                    int mes = fechaD.getMonth();
+                    int mesA = fechaA.getMonth();
+                    int dia = fechaD.getDate();
+                    int diaA = fechaA.getDate();
+                    if ((año > añoA-13) && (mes >= mesA) && (dia > diaA)){
                         System.out.println("Usted es menor de edad");
                         break;
                     }                    
@@ -46,11 +59,11 @@ static Scanner sc = new Scanner(System.in);
                 }break;
             
                 case 2:{
-                    System.out.println(registro);
+                    listar(registro);
                 }break;
             
                 case 3:{
-            
+                    //Matcher match 
                 }break;
             }
             System.out.println("-------Menu-------");
@@ -64,4 +77,10 @@ static Scanner sc = new Scanner(System.in);
         
     }
     
+    public static void listar (ArrayList <String> registro){
+        for (int contador = 0; contador < registro.size(); contador++) {
+            System.out.println(registro.get(contador));
+            System.out.println("\n");
+        }
+    }    
 }
