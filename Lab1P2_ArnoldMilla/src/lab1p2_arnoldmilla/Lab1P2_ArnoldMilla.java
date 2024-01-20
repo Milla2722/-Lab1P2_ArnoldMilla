@@ -43,8 +43,32 @@ static Scanner sc = new Scanner(System.in);
                         usuario += ";";
                     }
 
+                    System.out.println("Ingrese su correo electronico");
+                        ///////////////////intento de hacer redex, funciona la redex cuando retorna falso pero se queda atorado al ser verdadero
+                    boolean valid = ValidarCorreo(sc.next());
+                    System.out.println(valid);
+                    while(valid == false){
+                        System.out.println("Correo invalido, ingrese otro correo electronico");
+                       valid = ValidarCorreo(sc.next());
+                    }
+                    if (valid == true){
+                       usuario += sc.next();                    
+                        usuario += ";";
+                    }
                     
+                    System.out.println("Ingrese su contraseña");
+                    boolean verif = Contra(sc.next());
                     
+                    if (verif == true){
+                        usuario += sc.next();
+                        usuario += ";";
+                    }
+                    while (verif == false){
+                        System.out.println("Contraseña no valida, ingrese otra contraseña con caracteres especiales");
+                        verif = Contra(sc.next());
+                    }
+                    
+                    System.out.println("Usuario registrado");
                     registro.add(usuario);
                 }break;
             
@@ -126,7 +150,24 @@ static Scanner sc = new Scanner(System.in);
         }
     }
     
+    public static boolean Contra(String contra){
+        boolean valid = false;
+        
+        for (int c = 0; c < contra.length(); c++) {
+            char letra = contra.charAt(c);
+
+            if ((letra < 48 && letra > 32) || (letra > 57 && letra < 65)) {
+                valid = true;  
+            }
+        }
+        
+        return valid;
+    }
     
-    
-    
+    public static boolean ValidarCorreo(String correo){
+        String regex = "^[a-zA-Z0-9._%&$+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(correo);
+        return matcher.matches();
+    }
 }
