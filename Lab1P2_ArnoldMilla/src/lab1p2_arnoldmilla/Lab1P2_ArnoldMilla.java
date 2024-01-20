@@ -14,12 +14,7 @@ static Scanner sc = new Scanner(System.in);
         System.out.println("3. Listar por dominio");
         System.out.println("4. Salir");
         int opc = sc.nextInt();
-        String regexG = "^[a-zA-Z0-9._%&$+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-        String regexC = "";
-        Pattern pt= Pattern.compile(regexG);
-        Pattern dominioGmail= Pattern.compile("@gmail.com");
-        //Matcher listar= dominioGmail.matcher();
-                        
+                                                                                            /////Array list de strings
         ArrayList <String> registro = new ArrayList<>();
         while (opc < 4){
             switch (opc){
@@ -37,15 +32,9 @@ static Scanner sc = new Scanner(System.in);
                     Date fechaA = new Date();
                     int año = fechaD.getYear();
                     int añoA = fechaA.getYear();
-                    int mes = fechaD.getMonth();
-                    int mesA = fechaA.getMonth();
-                    int dia = fechaD.getDate();
-                    int diaA = fechaA.getDate();
-                    
-                    int wah = año + mes + dia;
-                    int weh = añoA + mesA+ diaA;
-                    
-                    if (weh > wah){
+                    System.out.println(año);
+                    /////validación de la fecha, no me funciono hacerlo con días y meses por lo tanto solo hice año
+                    if (año > añoA - 13){
                         System.out.println("Usted es menor de edad");
                         break;
                     }
@@ -53,35 +42,18 @@ static Scanner sc = new Scanner(System.in);
                         usuario += fecha;
                         usuario += ";";
                     }
+
                     
-//                    if (año > añoA){
-//                        if (mes >= mesA){
-//                            if (dia > diaA - 13){
-//                                System.out.println("Usted es menor de edad");
-//                                break;
-//                            }
-//                        }
-//                    }
-//                    else {
-//                        usuario += fecha;
-//                        usuario += ";";
-//                    }
-//descomentalo talvez funciona si no funciono la otra
-                    System.out.println("Ingrese su correo electronico");
-                    usuario += sc.next();
-                    usuario += ";";
-                    System.out.println("Ingrese su contraseña");
-                    usuario += sc.next();
-                    usuario += ";";
+                    
                     registro.add(usuario);
                 }break;
             
                 case 2:{
-                    listar(registro);
+                    Listar(registro);
                 }break;
-            
+                    
                 case 3:{
-                    //Matcher match 
+                    Ordenar(registro); 
                 }break;
             }
             System.out.println("-------Menu-------");
@@ -95,10 +67,66 @@ static Scanner sc = new Scanner(System.in);
         
     }
     
-    public static void listar (ArrayList <String> registro){
+    public static void Listar (ArrayList <String> registro){
         for (int contador = 0; contador < registro.size(); contador++) {
             System.out.println(registro.get(contador));
             System.out.println("\n");
         }
-    }    
+    }
+
+    public static void Ordenar (ArrayList<String> registro){
+        //// Se me olvido como hacer el bubble sort y no quiero perder tiempo buscando como hacerlo así que hare 6 fors
+        System.out.println("Gmail:");
+        for (int cont = 0; cont < registro.size(); cont++) {
+            String [] dominio = (registro.get(cont)).split(";");
+            boolean contiene = (dominio[3]).contains("gmail");
+            if (contiene == true){
+                System.out.println(registro.get(cont));
+            }
+        }
+        System.out.println("Outlook:");
+        for (int cont = 0; cont < registro.size(); cont++) {
+            String [] dominio = (registro.get(cont)).split(";");
+            boolean contiene = (dominio[3]).contains("outlook");
+            if (contiene == true){
+                System.out.println(registro.get(cont));
+            }
+        }
+        System.out.println("Yahoo:");
+        for (int cont = 0; cont < registro.size(); cont++) {
+            String [] dominio = (registro.get(cont)).split(";");
+            boolean contiene = (dominio[3]).contains("yahoo");
+            if (contiene == true){
+                System.out.println(registro.get(cont));
+            }
+        }
+        System.out.println("ICloud: ");
+        for (int cont = 0; cont < registro.size(); cont++) {
+            String [] dominio = (registro.get(cont)).split(";");
+            boolean contiene = (dominio[3]).contains("icloud");
+            if (contiene == true){
+                System.out.println(registro.get(cont));
+            }
+        }
+        System.out.println("ProtonMail");
+        for (int cont = 0; cont < registro.size(); cont++) {
+            String [] dominio = (registro.get(cont)).split(";");
+            boolean contiene = (dominio[3]).contains("proton");
+            if (contiene == true){
+                System.out.println(registro.get(cont));
+            }
+        }
+        System.out.println("FastMail");
+        for (int cont = 0; cont < registro.size(); cont++) {
+            String [] dominio = (registro.get(cont)).split(";");
+            boolean contiene = (dominio[3]).contains("fast");
+            if (contiene == true){
+                System.out.println(registro.get(cont));
+            }
+        }
+    }
+    
+    
+    
+    
 }
